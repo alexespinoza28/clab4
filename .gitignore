@@ -1,0 +1,8 @@
+*.xcodeproj
+xcuserdata/
+DerivedData/
+*.app
+*.dSYM*
+build/
+lab4.xcodeproj/
+
