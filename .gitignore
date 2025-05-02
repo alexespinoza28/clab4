@@ -6,5 +6,5 @@ DerivedData/
 build/
 lab4.xcodeproj/
 .DS_Store
-
+.vscode/
 .DS_Store
