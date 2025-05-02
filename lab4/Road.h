@@ -1,0 +1,132 @@
+//
+//  Road.h
+//  lab4
+//
+//  Created by maest on 4/3/25.
+//
+
+#ifndef Road_h
+#define Road_h
+#include <list>
+#include "Place.h"
+using namespace std;
+class Road {
+    //need static variables in order to correctly assign shared place objects between roads
+    static inline int roadCount = 0;
+    
+public:
+    static inline vector<Place*> sharedIntersectionPlaces;
+    enum Direction {
+        north,
+        west,
+        south,
+        east
+    };
+    Road() {
+        if (roadCount == 0) {
+            this->direction = Road::north;
+        } else if (roadCount == 1) {
+            this->direction = Road::west;
+        } else if (roadCount == 2) {
+            this->direction = Road::south;
+        } else {
+            this->direction = Road::east;
+        }
+        
+        //now we need to initialize our places which link to each other
+        for (int i = 0; i < numPlaces; i++) {
+            //  ROAD 0
+            if (roadCount == 0) {
+                Place* p = new Place();
+                placeList.push_back(p);
+                if (i == 25 || i == 26) {
+                    sharedIntersectionPlaces.push_back(p);  // 0 = 25, 1 = 26
+                }
+
+            // ROAD 1
+            } else if (roadCount == 1) {
+                if (i == 26) {
+                    placeList.push_back(sharedIntersectionPlaces[0]);  // Road 3 index 2
+                } else {
+                    placeList.push_back(new Place());
+                    if (i == 25) {
+                        sharedIntersectionPlaces.push_back(placeList.back()); //2 = road 1 25
+                    }
+                }
+
+            // ROAD 2
+            } else if (roadCount == 2) {
+                if (i == 26) {
+                    placeList.push_back(sharedIntersectionPlaces[2]);  // index 25 of road
+                } else {
+                    Place* p = new Place();
+                    placeList.push_back(p);
+                    if (i == 25) {
+                        sharedIntersectionPlaces.push_back(p);  // 3 = Road 2 index 25
+                    }
+                }
+                
+
+            //  ROAD 3
+            // so now 25 of south  i = 3 and 25 of north i = 0 go to east 25 and 26
+            } else if (roadCount == 3) {
+                if (i == 25) {
+                    placeList.push_back(sharedIntersectionPlaces[3]);
+                } else if (i == 26) {
+                   
+                    placeList.push_back(sharedIntersectionPlaces[0]);
+                } else {
+                    placeList.push_back(new Place());
+                }
+
+            }
+        }
+
+
+        
+        //now to initialize links
+        for (int i = 0; i < numPlaces; i++) {
+            if ((i + 1) < numPlaces) {
+                getPlaceAt(i)->assignAdjecent(getPlaceAt(i + 1));
+            }
+            if ((i + 2) < numPlaces) {
+                getPlaceAt(i)->assignAdjecent(getPlaceAt(i + 2));
+            }
+            if ((i + 3) < numPlaces) {
+                getPlaceAt(i)->assignAdjecent(getPlaceAt(i + 3));
+            }
+            if ((i + 4) < numPlaces) {
+                getPlaceAt(i)->assignAdjecent(getPlaceAt(i + 4));
+            }
+        }
+        roadCount++;
+    }
+    
+    ~Road() {
+        int index = 0;
+        for (Place* p : placeList) {
+            // Skip shared intersections (25 and 26)
+            if (index != 25 && index != 26) {
+                delete p;
+            }
+            index++;
+        }
+        placeList.clear();
+    }
+    
+private:
+    const int numPlaces = 51;
+    Direction direction;
+    list<Place*> placeList; //default for now each road will contain 50 place objects
+    
+    Place* getPlaceAt(int index) {
+        if (index >= numPlaces || index < 0) {
+            return nullptr;
+        }
+        auto it = placeList.begin();
+        advance(it, index);
+        return *it;
+    }
+};
+
+#endif /* Road_h */
