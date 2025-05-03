@@ -32,7 +32,7 @@ class Place{
         allowed_direction = Direction::None;
     };
 
-    PlacePlace(Direction direction, Place* next, int val){
+    Place(Direction direction, Place* next, int val){
         this->next = next;
         this->allowed_direction = direction;
         index_id = val;

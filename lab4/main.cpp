@@ -14,6 +14,7 @@
 #include "Bus.h"
 #include "Motorcycle.h"
 #include "TrafficLight.h"
+#include "map.h"
 using namespace std;
 
 const vector<string> Vehicle::colorMap = {
@@ -22,15 +23,6 @@ const vector<string> Vehicle::colorMap = {
 };
 
 int main(int argc, const char * argv[]) {
-    Road north = Road();
-    Road east = Road();
-    Road south = Road();
-    Road west = Road();
     
-    //making an assumption that if i delete one road, all roads are beign deleted so no need to micromanage which ghsraed road pieces stay and go when one road gets deleted. they just all go
-    for (Place* p : Road::sharedIntersectionPlaces) {
-        delete p;
-    }
-    Road::sharedIntersectionPlaces.clear();
     return 0;
 }
