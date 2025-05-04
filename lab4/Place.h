@@ -37,7 +37,12 @@ public:
     bool isFree() {
         return free;
     }
-    
+    void occupy() {
+        free = false;
+    }
+    void free() {
+        free = true;
+    }
     Place* next() {
         return adjacent[0];
     }

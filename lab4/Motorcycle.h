@@ -22,6 +22,15 @@ public:
         return false;
     }
     
+    void move() {
+        if (!freeToMove()){
+            return;
+        }
+        placeList.back()->next()->occupy();
+        placeList.push_back(placeList.back()->next());
+        placeList.front()->free();
+        placeList.pop_front();
+    }
 private:
     
     

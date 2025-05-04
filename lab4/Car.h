@@ -29,10 +29,18 @@ class Car: public Vehicle {
         return false;
     }
     
-    void moveCar() {
+    void move() {
+        if (!freeToMove()){
+            return;
+        }
+        //move one place forward and delete one place back
+        placeList.back()->next()->occupy();
+        placeList.push_back(placeList.back()->next());
         
+        placeList.front()->free();
+        placeList.pop_front();
+     
     }
-    
    
     
     private:

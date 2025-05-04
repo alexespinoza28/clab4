@@ -9,6 +9,7 @@
 #define Vehicle_h
 #include "Place.h"
 #include <vector>
+#include <deque>
 using namespace std;
 
 enum Direction {
@@ -26,7 +27,7 @@ protected:
     int speed;
     int length;
     double weight;
-    vector<Place*> placeList;
+    deque<Place*> placeList;
     bool moveForward;
     Direction direction;
     
@@ -41,6 +42,7 @@ public:
     }
     
     virtual bool freeToMove() const = 0;  // pure virtual, freeToMove depends on vehicle length
+    virtual void move() const = 0;
     private:
    
     

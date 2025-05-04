@@ -22,8 +22,17 @@ public:
         return false;
     }
     
-    void moveTruck() {
-        
+    void move() {
+        //move two places forward and delete two places back
+        placeList.back()->next()->occupy();
+        placeList.push_back(placeList.back()->next());
+        placeList.back()->next()->occupy();
+        placeList.push_back(placeList.back()->next());
+       
+        placeList.front()->free();
+        placeList.pop_front();
+        placeList.front()->free();
+        placeList.pop_front();
     }
     
 private:
