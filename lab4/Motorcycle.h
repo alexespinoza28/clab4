@@ -28,7 +28,7 @@ public:
         }
         placeList.back()->next()->occupy();
         placeList.push_back(placeList.back()->next());
-        placeList.front()->free();
+        placeList.front()->markFree();
         placeList.pop_front();
     }
 private:

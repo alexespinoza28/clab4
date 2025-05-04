@@ -14,8 +14,8 @@ class Place {
 public:
     friend class Road;
     Place() {
-        bool free = true;
-        int neighborsCount = 0;
+        isFreeFlag = true;
+        neighborsCount = 0;
         
         for (Place* p: adjacent) {
             p = nullptr;
@@ -35,13 +35,13 @@ public:
     }
     
     bool isFree() {
-        return free;
+        return isFreeFlag;
     }
     void occupy() {
-        free = false;
+        isFreeFlag = false;
     }
-    void free() {
-        free = true;
+    void markFree() {
+        isFreeFlag = true;
     }
     Place* next() {
         return adjacent[0];
@@ -51,7 +51,7 @@ public:
 private:
     int neighborsCount; // use to make sure we dont overassign adjecent places
     Place* adjacent[4];
-    bool free;
+    bool isFreeFlag;
     
     void assignAdjecent(Place* adj) {
         if (neighborsCount == 4) {

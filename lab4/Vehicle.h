@@ -10,14 +10,10 @@
 #include "Place.h"
 #include <vector>
 #include <deque>
+#include "Road.h"
 using namespace std;
 
-enum Direction {
-    north,
-    west,
-    south,
-    east
-};
+
 
 class Vehicle {
 protected:
