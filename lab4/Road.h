@@ -9,6 +9,7 @@
 #define Road_h
 #include <list>
 #include "Place.h"
+#include "TrafficLight.h"
 using namespace std;
 
 enum Direction {
@@ -118,21 +119,22 @@ public:
     Direction getDirection() {
         return direction;
     }
-    
+    int getNumPlaces() {
+        return numPlaces;
+    }
     Place* getPlaceAt(int index) {
         if (index >= numPlaces || index < 0) {
             return nullptr;
         }
-        auto it = placeList.begin();
-        advance(it, index);
-        return *it;
+        return placeList[index];
     }
-private:
+    
+    private:
     //need static variables in order to correctly assign shared place objects between roads
     static inline int roadCount = 0;
     const int numPlaces = 51;
     Direction direction;
-    list<Place*> placeList; //default for now each road will contain 50 place objects
+    vector<Place*> placeList; //default for now each road will contain 50 place objects
     
    
     

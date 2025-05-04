@@ -26,6 +26,7 @@ class Car: public Vehicle {
         }
     }
     
+    
     bool freeToMove() {
         int x = placeList.back()->freeConsecutiveNeighbors();
         if (x >= length/2) {

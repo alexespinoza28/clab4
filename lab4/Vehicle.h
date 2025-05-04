@@ -11,6 +11,7 @@
 #include <vector>
 #include <deque>
 #include "Road.h"
+#include "TrafficLight.h"
 using namespace std;
 
 
@@ -40,7 +41,10 @@ public:
         weight = 0;
         moveForward = false;
     }
-    
+    bool atEndOfRoad() const {
+        return placeList.back() == road->getPlaceAt(road->getNumPlaces() - 1);
+    }
+
     virtual bool freeToMove() const = 0;  // pure virtual, freeToMove depends on vehicle length
     virtual void move() const = 0;
     private:
