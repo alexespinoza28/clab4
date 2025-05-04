@@ -23,6 +23,6 @@ const vector<string> Vehicle::colorMap = {
 };
 
 int main(int argc, const char * argv[]) {
-    
+
     return 0;
 }

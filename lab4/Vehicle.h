@@ -10,15 +10,18 @@
 #include "Place.h"
 #include <vector>
 using namespace std;
+
+enum Direction {
+    north,
+    west,
+    south,
+    east
+};
+
 class Vehicle {
 protected:
     static const std::vector<std::string> colorMap;
-    enum Direction {
-        north,
-        west,
-        south,
-        east
-    };
+    
     string name;
     int speed;
     int length;

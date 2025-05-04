@@ -13,8 +13,8 @@
 class TrafficLight {
 public:
     
-    //inputs are the duration of north/south green light and east/west green light
-    TrafficLight(int nsGreen, int ewGreen) {
+    TrafficLight() {
+
                 
     }
 private:
@@ -24,10 +24,7 @@ private:
         green,
         yellow
     };
-    
-    Place* blockedRoads[4];
-    Color lightColor;
-    
+
 };
 
 #endif /* TrafficLight_h */
