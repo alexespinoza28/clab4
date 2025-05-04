@@ -12,7 +12,14 @@ class Motorcycle: public Vehicle {
 public:
     
     Motorcycle() {
-        
+        length = 1;
+    }
+    bool freeToMove() {
+        int x = placeList.back()->freeConsecutiveNeighbors();
+        if (x >= 1) {
+            return true;
+        }
+        return false;
     }
     
 private:

@@ -10,6 +10,7 @@
 #include <string>
 #include <unordered_map>
 #include "map.h"
+#include <vector>
 using namespace std;
 class Car: public Vehicle {
     public:
@@ -17,10 +18,14 @@ class Car: public Vehicle {
 
     Car(string color) {
         this->color = color;
+        length = 2;
     }
     
-    bool canMove() {
-        
+    bool freeToMove() {
+        int x = placeList.back()->freeConsecutiveNeighbors();
+        if (x >= length/2) {
+            return true;
+        }
         return false;
     }
     

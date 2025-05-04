@@ -10,8 +10,15 @@
 #include "Place.h"
 class Truck: public Vehicle {
 public:
-    bool canMove() {
-        
+    Truck() {
+        length = 5;
+    }
+    
+    bool freeToMove() {
+        int x = placeList.back()->freeConsecutiveNeighbors();
+        if (x >= length/2) {
+            return true;
+        }
         return false;
     }
     

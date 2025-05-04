@@ -21,6 +21,7 @@ protected:
     };
     string name;
     int speed;
+    int length;
     double weight;
     vector<Place*> placeList;
     bool moveForward;

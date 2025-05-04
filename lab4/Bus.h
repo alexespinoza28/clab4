@@ -12,16 +12,18 @@
 class Bus: public Vehicle {
 public:
     Bus() {
-   
+        length = 4;
         name = genName(); //either school or MBTA
 
     }
-    
-    bool canMove() {
-        
+    bool freeToMove() {
+        int x = placeList.back()->freeConsecutiveNeighbors();
+        if (x >= length/2) {
+            return true;
+        }
         return false;
     }
-    
+   
     void moveBus() {
         
     }
