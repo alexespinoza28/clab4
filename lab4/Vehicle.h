@@ -7,7 +7,7 @@
 
 #ifndef Vehicle_h
 #define Vehicle_h
-#include "map.h"
+#include "Place.h"
 #include <vector>
 using namespace std;
 class Vehicle {
@@ -36,6 +36,7 @@ public:
         moveForward = false;
     }
     
+    virtual bool freeToMove() const = 0;  // pure virtual, freeToMove depends on vehicle length
     private:
    
     

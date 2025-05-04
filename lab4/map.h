@@ -1,6 +1,8 @@
+/*
 #ifndef MAP_H
 #define MAP_H
-/* using namespace std;
+
+using namespace std;
 
 
 class Road;
@@ -148,3 +150,4 @@ void merge_roads(Road &north, Road &south, Road &west, Road &east){
 
 
 #endif
+ */
