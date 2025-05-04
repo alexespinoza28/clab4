@@ -7,13 +7,15 @@
 
 #ifndef TrafficLight_h
 #define TrafficLight_h
-#include "map.h"
+#include "Road.h"
+#include "Place.h"
+#include <vector>
 class TrafficLight {
 public:
     
     //inputs are the duration of north/south green light and east/west green light
     TrafficLight(int nsGreen, int ewGreen) {
-        
+                
     }
 private:
    

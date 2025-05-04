@@ -13,7 +13,8 @@
 #include "Bus.h"
 #include "Motorcycle.h"
 #include "TrafficLight.h"
-#include "map.h"
+#include "Road.h"
+#include "Place.h"
 using namespace std;
 
 const vector<string> Vehicle::colorMap = {

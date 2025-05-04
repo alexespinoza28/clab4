@@ -1,6 +1,6 @@
 #ifndef MAP_H
 #define MAP_H
-using namespace std;
+/* using namespace std;
 
 
 class Road;
