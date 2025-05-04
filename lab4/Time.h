@@ -10,9 +10,16 @@
 
 
 class Time {
+    public:
+    //pause is how long after each tick the system pausues
+    Time(int pause){
+        this->pause = pause;
+    }
     
-    
-    
+    private:
+    int duration; //how long the simulation has been running (start is 0 seconds)
+    int pause;
+
 };
 
 #endif
