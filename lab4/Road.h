@@ -10,25 +10,28 @@
 #include <list>
 #include "Place.h"
 using namespace std;
+
+enum Direction {
+    north,
+    west,
+    south,
+    east
+};
+
 class Road {
    
 public:
     static inline vector<Place*> sharedIntersectionPlaces;
-    enum Direction {
-        north,
-        west,
-        south,
-        east
-    };
+    
     Road() {
         if (roadCount == 0) {
-            this->direction = Road::north;
+            this->direction = Direction::north;
         } else if (roadCount == 1) {
-            this->direction = Road::east;
+            this->direction = Direction::east;
         } else if (roadCount == 2) {
-            this->direction = Road::south;
+            this->direction = Direction::south;
         } else {
-            this->direction = Road::west;
+            this->direction = Direction::west;
         }
         
         //now we need to initialize our places which link to each other
