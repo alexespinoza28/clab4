@@ -27,11 +27,14 @@ protected:
     bool moveForward;
     Direction direction;
     
+    Road* road;
     
     
 public:
     
-    Vehicle() {
+    Vehicle(Road* road) {
+        this->road = road;
+        this->direction = road->getDirection();
         speed = 0;
         weight = 0;
         moveForward = false;

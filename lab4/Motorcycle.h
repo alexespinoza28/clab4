@@ -11,8 +11,14 @@
 class Motorcycle: public Vehicle {
 public:
     
-    Motorcycle() {
+    Motorcycle(Road* road) : Vehicle(road) {
         length = 1;
+        
+        //initialize vehicles place deque with the first however many place objects at the start of each road
+        for (int i = 0; i < length; i++) {
+            placeList.push_back(road->getPlaceAt(i));
+        }
+
     }
     bool freeToMove() {
         int x = placeList.back()->freeConsecutiveNeighbors();

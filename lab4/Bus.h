@@ -11,10 +11,13 @@
 #include "map.h"
 class Bus: public Vehicle {
 public:
-    Bus() {
+    Bus(Road* road) : Vehicle(road){
         length = 4;
         name = genName(); //either school or MBTA
-
+        //initialize vehicles place deque with the first however many place objects at the start of each road
+        for (int i = 0; i < length; i++) {
+            placeList.push_back(road->getPlaceAt(i));
+        }
     }
     bool freeToMove() {
         int x = placeList.back()->freeConsecutiveNeighbors();
@@ -24,7 +27,7 @@ public:
         return false;
     }
    
-    void move() {
+    void move()  {
         //move two places forward and delete two places back
         placeList.back()->next()->occupy();
         placeList.push_back(placeList.back()->next());

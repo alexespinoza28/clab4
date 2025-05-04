@@ -16,9 +16,14 @@ class Car: public Vehicle {
     public:
     
 
-    Car(string color) {
+    Car(string color, Road* road) : Vehicle(road) {
         this->color = color;
         length = 2;
+        
+        //initialize vehicles place deque with the first however many place objects at the start of each road
+        for (int i = 0; i < length; i++) {
+            placeList.push_back(road->getPlaceAt(i));
+        }
     }
     
     bool freeToMove() {

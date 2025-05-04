@@ -115,13 +115,9 @@ public:
         }
         placeList.clear();
     }
-    
-private:
-    //need static variables in order to correctly assign shared place objects between roads
-    static inline int roadCount = 0;
-    const int numPlaces = 51;
-    Direction direction;
-    list<Place*> placeList; //default for now each road will contain 50 place objects
+    Direction getDirection() {
+        return direction;
+    }
     
     Place* getPlaceAt(int index) {
         if (index >= numPlaces || index < 0) {
@@ -131,6 +127,15 @@ private:
         advance(it, index);
         return *it;
     }
+private:
+    //need static variables in order to correctly assign shared place objects between roads
+    static inline int roadCount = 0;
+    const int numPlaces = 51;
+    Direction direction;
+    list<Place*> placeList; //default for now each road will contain 50 place objects
+    
+   
+    
 };
 
 #endif /* Road_h */

@@ -10,8 +10,12 @@
 #include "Place.h"
 class Truck: public Vehicle {
 public:
-    Truck() {
+    Truck(Road* road) : Vehicle(road) {
         length = 5;
+        //initialize vehicles place deque with the first however many place objects at the start of each road
+        for (int i = 0; i < length; i++) {
+            placeList.push_back(road->getPlaceAt(i));
+        }
     }
     
     bool freeToMove() {
