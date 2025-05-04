@@ -12,7 +12,6 @@
 using namespace std;
 class Road {
    
-    
 public:
     static inline vector<Place*> sharedIntersectionPlaces;
     enum Direction {
@@ -25,11 +24,11 @@ public:
         if (roadCount == 0) {
             this->direction = Road::north;
         } else if (roadCount == 1) {
-            this->direction = Road::west;
+            this->direction = Road::east;
         } else if (roadCount == 2) {
             this->direction = Road::south;
         } else {
-            this->direction = Road::east;
+            this->direction = Road::west;
         }
         
         //now we need to initialize our places which link to each other

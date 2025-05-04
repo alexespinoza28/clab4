@@ -14,8 +14,8 @@ class Place {
 public:
     friend class Road;
     Place() {
-        free = true;
-        neighborsCount = 0;
+        bool free = true;
+        int neighborsCount = 0;
         
         for (Place* p: adjacent) {
             p = nullptr;
@@ -39,7 +39,7 @@ public:
     }
     
     Place* next() {
-        return nullptr;
+        return adjacent[0];
     }
     
     
