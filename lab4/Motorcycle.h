@@ -17,7 +17,7 @@ public:
     
 private:
     
-    Place* occupiedSpot;
+    
 };
 
 #endif /* Motorcycle_h */

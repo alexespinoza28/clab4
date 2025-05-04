@@ -8,6 +8,7 @@
 #ifndef Vehicle_h
 #define Vehicle_h
 #include "map.h"
+#include <vector>
 using namespace std;
 class Vehicle {
 protected:
@@ -21,7 +22,7 @@ protected:
     string name;
     int speed;
     double weight;
-    Place location;
+    vector<Place*> placeList;
     bool moveForward;
     Direction direction;
     

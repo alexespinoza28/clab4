@@ -32,7 +32,7 @@ class Car: public Vehicle {
     
     private:
     
-    Place* occupiedSpots[2];
+    
  
     static const vector<string> colorMap ;
 

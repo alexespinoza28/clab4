@@ -27,7 +27,7 @@ public:
     }
    
 private:
-    Place* occupiedSpaces[4];
+    
     int passengers;
     
     string genName() {

@@ -25,7 +25,7 @@ private:
     
     Place* destinationLocation;
     
-    Place* occupiedSpots[5];
+    
 };
 
 #endif /* Truck_h */
