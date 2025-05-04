@@ -9,6 +9,7 @@
 #define Car_h
 #include <string>
 #include <unordered_map>
+#include "map.h"
 using namespace std;
 class Car: public Vehicle {
     public:

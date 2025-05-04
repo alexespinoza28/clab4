@@ -7,6 +7,7 @@
 
 #ifndef Motorcycle_h
 #define Motorcycle_h
+#include "map.h"
 class Motorcycle: public Vehicle {
 public:
     

@@ -8,6 +8,7 @@
 #ifndef Bus_h
 #define Bus_h
 #include <random>
+#include "map.h"
 class Bus: public Vehicle {
 public:
     Bus() {

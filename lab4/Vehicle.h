@@ -7,7 +7,7 @@
 
 #ifndef Vehicle_h
 #define Vehicle_h
-#include "Place.h"
+#include "map.h"
 using namespace std;
 class Vehicle {
 protected:

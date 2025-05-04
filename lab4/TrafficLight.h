@@ -7,6 +7,7 @@
 
 #ifndef TrafficLight_h
 #define TrafficLight_h
+#include "map.h"
 class TrafficLight {
 public:
     

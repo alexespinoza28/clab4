@@ -7,6 +7,7 @@
 
 #ifndef Truck_h
 #define Truck_h
+#include "map.h"
 class Truck: public Vehicle {
 public:
     bool canMove() {

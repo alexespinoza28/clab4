@@ -7,10 +7,9 @@
 
 #include <iostream>
 #include "Vehicle.h"
-#include "Road.h"
 #include "Car.h"
 #include "Truck.h"
-#include "Place.h"
+
 #include "Bus.h"
 #include "Motorcycle.h"
 #include "TrafficLight.h"
