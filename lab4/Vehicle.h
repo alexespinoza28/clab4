@@ -33,6 +33,7 @@ protected:
 public:
     
     Vehicle(Road* road) {
+        if (!road) throw std::invalid_argument("Road pointer cannot be null");
         this->road = road;
         this->direction = road->getDirection();
         speed = 0;
