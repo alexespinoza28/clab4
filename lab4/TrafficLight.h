@@ -19,7 +19,7 @@ enum Color {
 class TrafficLight {
     friend class Time;
 public:
-
+    
     //initializes north and south as green, west and east as red
     TrafficLight(int greenDuration, int yellowDuration) {
         this->greenDuration = greenDuration;

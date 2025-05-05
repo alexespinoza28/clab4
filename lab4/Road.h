@@ -9,7 +9,7 @@
 #define Road_h
 #include <list>
 #include "Place.h"
-#include "TrafficLight.h"
+
 using namespace std;
 
 enum Direction {

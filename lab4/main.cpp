@@ -16,7 +16,7 @@
 #include "Road.h"
 #include "Place.h"
 #include "Time.h"
-#include "TrafficLight.h"
+
 using namespace std;
 
 const vector<string> Vehicle::colorMap = {
