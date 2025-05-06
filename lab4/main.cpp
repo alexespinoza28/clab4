@@ -39,7 +39,10 @@ string temp_func(Color color){
 }
 
 int main(int argc, const char * argv[]) {
-   
+    Road* north = new Road();
+    Road* east = new Road();
+    Road* south = new Road();
+    Road* west = new Road();
     
     TrafficLight light = TrafficLight(3,1);
     Time timer = Time(2, &light);
@@ -56,5 +59,14 @@ int main(int argc, const char * argv[]) {
         timer.tick();
     }
     
+    //clear memory for road objects
+    delete north;
+    delete east;
+    delete south;
+    delete west;
+    for (Place* p : Road().sharedIntersectionPlaces) {
+        delete p;
+    }
+    Road().sharedIntersectionPlaces.clear();
     return 0;
 }
