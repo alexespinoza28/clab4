@@ -45,6 +45,11 @@ public:
         return placeList.back() == road->getPlaceAt(road->getNumPlaces() - 1);
     }
     
+    //need to replace road is vehicle turns onto another road, may make this private since only the turn method will actually replace the road but well see
+    void replaceRoad(Road* road) {
+        this->road = road;
+    }
+    
     bool isOnIntersection() {
         for (Place* p: placeList) {
             for (Place* x: Road().sharedIntersectionPlaces) {

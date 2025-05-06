@@ -16,6 +16,7 @@
 #include "Road.h"
 #include "Place.h"
 #include "Time.h"
+#include <unordered_map>
 
 using namespace std;
 
@@ -43,6 +44,14 @@ int main(int argc, const char * argv[]) {
     Road* east = new Road();
     Road* south = new Road();
     Road* west = new Road();
+    
+    //create a turn map to initialize which road turns onto which other road
+    // we need to make this because if a vehicle can turn , then its road must be replaced with the other road that its mapped to
+    unordered_map<Road*, Road*> turnMap;
+    turnMap.insert(north, east);
+    turnMap.insert(east, south);
+    turnMap.insert(south, west);
+    turnMap.insert(west, north);
     
     TrafficLight light = TrafficLight(3,1);
     Time timer = Time(2, &light);
