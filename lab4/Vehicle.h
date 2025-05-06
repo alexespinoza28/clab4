@@ -55,6 +55,17 @@ public:
         }
         return false;
     }
+    
+    //want to use this method if the vehicle is about to hit the intersection, in order to figure otu wheter to turn or go straight
+    bool isBeforeIntersection() {
+        for (Place* x : Road().sharedIntersectionPlaces) {
+            if (placeList.back()->next() == x) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     virtual bool freeToMove() const = 0;  // pure virtual, freeToMove depends on vehicle length
     virtual void move() const = 0;
     private:
