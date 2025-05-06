@@ -39,6 +39,8 @@ string temp_func(Color color){
 }
 
 int main(int argc, const char * argv[]) {
+   
+    
     TrafficLight light = TrafficLight(3,1);
     Time timer = Time(2, &light);
 
