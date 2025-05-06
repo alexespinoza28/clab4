@@ -44,7 +44,17 @@ public:
     bool atEndOfRoad() const {
         return placeList.back() == road->getPlaceAt(road->getNumPlaces() - 1);
     }
-
+    
+    bool isOnIntersection() {
+        for (Place* p: placeList) {
+            for (Place* x: Road().sharedIntersectionPlaces) {
+                if (p == x) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     virtual bool freeToMove() const = 0;  // pure virtual, freeToMove depends on vehicle length
     virtual void move() const = 0;
     private:
