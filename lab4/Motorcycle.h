@@ -20,7 +20,7 @@ public:
         }
 
     }
-    bool freeToMove() {
+    bool freeToMove() override{
         int x = placeList.back()->freeConsecutiveNeighbors();
         if (x >= 1) {
             return true;
@@ -28,7 +28,7 @@ public:
         return false;
     }
     
-    void move() {
+    void move() override{
         if (!freeToMove()){
             return;
         }

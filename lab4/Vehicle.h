@@ -71,8 +71,8 @@ public:
         return false;
     }
     
-    virtual bool freeToMove() const = 0;  // pure virtual, freeToMove depends on vehicle length
-    virtual void move() const = 0;
+    virtual bool freeToMove()  = 0;  // pure virtual, freeToMove depends on vehicle length
+    virtual void move()  = 0;
     private:
    
     

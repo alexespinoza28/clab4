@@ -27,7 +27,7 @@ class Car: public Vehicle {
     }
     
     
-    bool freeToMove() {
+    bool freeToMove() override {
         int x = placeList.back()->freeConsecutiveNeighbors();
         if (x >= length/2) {
             return true;
@@ -35,7 +35,7 @@ class Car: public Vehicle {
         return false;
     }
     
-    void move() {
+    void move() override {
         if (!freeToMove()){
             return;
         }

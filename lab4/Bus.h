@@ -19,7 +19,7 @@ public:
             placeList.push_back(road->getPlaceAt(i));
         }
     }
-    bool freeToMove() {
+    bool freeToMove() override{
         int x = placeList.back()->freeConsecutiveNeighbors();
         if (x >= length/2) {
             return true;
@@ -27,7 +27,7 @@ public:
         return false;
     }
    
-    void move()  {
+    void move() override{
         //move two places forward and delete two places back
         placeList.back()->next()->occupy();
         placeList.push_back(placeList.back()->next());
