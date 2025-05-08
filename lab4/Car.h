@@ -16,8 +16,8 @@ class Car: public Vehicle {
     public:
     
 
-    Car(string color, Road* road) : Vehicle(road) {
-        this->color = color;
+    Car(Road* road) : Vehicle(road) {
+        
         length = 2;
         
         //initialize vehicles place deque with the first however many place objects at the start of each road

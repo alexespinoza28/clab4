@@ -9,7 +9,7 @@
 #include "Vehicle.h"
 #include "Car.h"
 #include "Truck.h"
-#include "Vehicle.h"
+#include "VehicleQueue.h"
 #include "Bus.h"
 #include "Motorcycle.h"
 #include "TrafficLight.h"
