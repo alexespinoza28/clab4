@@ -46,14 +46,19 @@ public:
 
         int roll = dist(engine);
         
+        Vehicle* newVehicle = nullptr;
         if (roll <= 50) {
-            Car* newCar = new Car(road);
+            newVehicle = new Car(road);
+            q.push(newVehicle);
         } else if (roll <= 70) {
-           Bus* newBus = new Bus(road);
+            newVehicle = new Bus(road);
+            q.push(newVehicle);
         } else if (roll <= 90) {
-            Truck* newTruck = new Truck(road);
+            newVehicle = new Truck(road);
+            q.push(newVehicle);
         } else {
-            Motorcycle* newMotocyle = new Motorcycle(road);
+            newVehicle = new Motorcycle(road);
+            q.push(newVehicle);
         }
 
        
