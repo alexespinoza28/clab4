@@ -39,6 +39,37 @@ string temp_func(Color color){
     }
 }
 
+void printIntersectionCharMap() {
+    const char* layout[] = {
+        "             *          *          *",
+        "             *          *          *",
+        "             *          *          *",
+        "             *          *          *",
+        "             *          *          *",
+        "             *          *          *",
+        "**************          *          *******************",
+        "                        *",
+        "                        *",
+        "                        *",
+        "******************************************************",
+        "                        *",
+        "                        *",
+        "                        *",
+        "**************          *          *******************",
+        "             *          *          *",
+        "             *          *          *",
+        "             *          *          *",
+        "             *          *          *",
+        "             *          *          *",
+        "             *          *          *"
+    };
+
+    int height = sizeof(layout) / sizeof(layout[0]);
+    for (int i = 0; i < height; i++) {
+        std::cout << layout[i] << std::endl;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     Road* north = new Road();
     Road* east = new Road();
@@ -51,7 +82,9 @@ int main(int argc, const char * argv[]) {
    
     TrafficLight light = TrafficLight(3,1);
     Time timer = Time(2, &light);
-
+    
+    printIntersectionCharMap();
+    /*
     while(true){
         if(timer.getElapsedTime() == 20){
             break;
@@ -63,15 +96,15 @@ int main(int argc, const char * argv[]) {
         cout<<"east color: "<<temp_func(light.getColor(Direction::east))<<endl;
         timer.tick();
     }
-    
+    */
     //clear memory for road objects
     delete north;
     delete east;
     delete south;
     delete west;
-    for (Place* p : Road().sharedIntersectionPlaces) {
+    for (Place* p : Road::sharedIntersectionPlaces) {
         delete p;
     }
-    Road().sharedIntersectionPlaces.clear(); 
+    Road::sharedIntersectionPlaces.clear();
     return 0;
 }
