@@ -26,21 +26,23 @@
 #include <random>
 #include <ctime>
 #include <deque>
+#include <unordered_map>
 using namespace std;
 class VehicleQueue {
 private:
     deque<Vehicle*> q;
     Direction direction;
-    Color lightColor;
     Road* road;
     
 public:
-    VehicleQueue(Color lightColor, Direction direction, Road* road) {
-        this->lightColor = lightColor;
+    static unordered_map<Direction, VehicleQueue*> qMap;
+    VehicleQueue(Direction direction, Road* road) {
+        
         this->direction = direction;
         this->road = road;
+        qMap[direction] = this;
     }
-    void moveVehicles() {
+    void moveVehicles(Color lightColor) {
         switch(lightColor) {
             case green:
                 for (auto it = q.begin(); it != q.end(); ) {
@@ -88,6 +90,20 @@ public:
                 }
                 break;
         }
+    }
+    void insertVehicleAfterTurn(Vehicle* v, VehicleQueue* vq) {
+        int newDist = v->distanceToIntersection();
+        auto it = vq->q.begin();
+        while (it != vq->q.end()) {
+            if ((*it)->distanceToIntersection() > newDist) {
+                break;
+            }
+            ++it;
+        }
+        vq->q.insert(it, v);
+    }
+    Vehicle* closestToIntersection() {
+        
     }
     void spawnVehicle() {
         static default_random_engine engine(static_cast<unsigned>(time(0)));
