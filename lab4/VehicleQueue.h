@@ -43,11 +43,48 @@ public:
     void moveVehicles() {
         switch(lightColor) {
             case green:
-                
+                for (auto it = q.begin(); it != q.end(); ) {
+                    Vehicle* v = *it;
+                    if (v->atEndOfRoad()) {
+                        it = q.erase(it);
+                        delete v;
+                    } else {
+                        v->move();
+                        ++it;
+                    }
+                }
+                break;
+
+            case yellow:
+                for (auto it = q.begin(); it != q.end(); ) {
+                    Vehicle* v = *it;
+                    if (v->atEndOfRoad()) {
+                        it = q.erase(it);
+                        delete v;
+                    } else if (v->isOnIntersection()) {
+                        v->move();
+                        ++it;
+                    } else {
+                        ++it;
+                    }
+                }
+                break;
+
+            case red:
+                for (auto it = q.begin(); it != q.end(); ) {
+                    Vehicle* v = *it;
+                    if (v->atEndOfRoad()) {
+                        it = q.erase(it);
+                        delete v;
+                    } else if (!v->isBeforeIntersection()) {
+                        v->move();
+                        ++it;
+                    } else {
+                        ++it;
+                    }
+                }
                 break;
         }
-        
-        
     }
     void spawnVehicle() {
         static default_random_engine engine(static_cast<unsigned>(time(0)));
