@@ -68,7 +68,7 @@ public:
         else if(get<1>(road_index)+1 > 26){
             return (26 - get<1>(road_index)+1);
         }
-
+        return 999;
     }
     
     bool isOnIntersection() {

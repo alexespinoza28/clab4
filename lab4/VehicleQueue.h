@@ -91,20 +91,26 @@ public:
                 break;
         }
     }
+    
     void insertVehicleAfterTurn(Vehicle* v, VehicleQueue* vq) {
-        int newDist = v->distanceToIntersection();
+        int newDist = v->intersectionRadius();
         auto it = vq->q.begin();
         while (it != vq->q.end()) {
-            if ((*it)->distanceToIntersection() > newDist) {
+            if ((*it)->intersectionRadius() > newDist) {
                 break;
             }
             ++it;
         }
         vq->q.insert(it, v);
     }
+    
     Vehicle* closestToIntersection() {
+        Vehicle* bruh = nullptr;
+        
+        return bruh;
         
     }
+    
     void spawnVehicle() {
         static default_random_engine engine(static_cast<unsigned>(time(0)));
         uniform_int_distribution<int> dist(1, 100);
