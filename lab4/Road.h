@@ -133,7 +133,7 @@ public:
     static inline int roadCount = 0;
     const int numPlaces = 51;
     Direction direction;
-    vector<Place*> placeList; //default for now each road will contain 50 place objects
+    vector<Place*> placeList; //default for now each road will contain 20 place objects
     
    
     

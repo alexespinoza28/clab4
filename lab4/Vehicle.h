@@ -59,16 +59,16 @@ public:
 
     //returns negative if in front of the intersection, returns positive if before the intersection, returns 0 if at the intersection
     int intersectionRadius(){
-        if(get<1>(road_index)+1 == 25 || get<1>(road_index)+1 == 26){
+        if(get<1>(road_index)+1 == road->getNumPlaces()/2 || get<1>(road_index)+1 == (road->getNumPlaces()/2) + 1){
             return 0;
         }
-        else if(get<1>(road_index)+1 < 25){
-            return (25 - get<1>(road_index)+1);
+        else if(get<1>(road_index)+1 < road->getNumPlaces()/2){
+            return ((road->getNumPlaces()/2) - get<1>(road_index)+1);
         }
-        else if(get<1>(road_index)+1 > 26){
-            return (26 - get<1>(road_index)+1);
+        else if(get<1>(road_index)+1 > (road->getNumPlaces()/2) + 1){
+            return ((road->getNumPlaces()/2) + 1 - get<1>(road_index)+1);
         }
-        return 999;
+        return -999;
     }
     
     bool isOnIntersection() {
@@ -96,12 +96,34 @@ public:
         return this->road;
     }
     
+
+    Direction rightTurn(Direction direction){
+        switch(direction){
+            case north:
+                return east;
+
+            case south:
+                return west;
+
+            case west:
+                return north;
+
+            case east:
+                return south;
+
+        }
+    }
+
+
+
     virtual bool freeToMove()  = 0;  // pure virtual, freeToMove depends on vehicle length
     virtual void turn();
     virtual void move()  = 0;
     virtual ~Vehicle() = default;
     private:
    
+    
+
     
 };
 

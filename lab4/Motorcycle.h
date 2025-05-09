@@ -30,11 +30,19 @@ public:
     }
 
     void turn(){
-        //only turns if before intersection
-        if(!isBeforeIntersection()){
+        //if on the intersection:
+        if(!isOnIntersection()){
             return;
         }
-        //is there space
+        //is it on the first place on the intersection? if not, return
+        if(!(get<1>(road_index)+1 == (road->getNumPlaces()/2))){
+            return;
+        }
+
+        //is there space to turn?
+        if(rightTurn(direction) == north){
+            
+        }
         
     }
     
