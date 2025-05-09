@@ -24,7 +24,7 @@ const vector<string> Vehicle::colorMap = {
     "Red", "Black", "Blue", "White", "Yellow", "Orange",
     "Magenta", "Dark Blue", "Grey", "Beige", "Brown", "Purple"
 };
-
+static const int ROAD_SIZE = 20;
 
 string temp_func(Color color){
     switch(color){

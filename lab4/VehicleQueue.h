@@ -104,6 +104,13 @@ public:
             ++it;
         }
         vq->q.insert(it, v);
+        
+        for (auto it = q.begin(); it != q.end(); ++it) {
+            if (*it == v) {
+                q.erase(it);
+                break;  // Only erase one occurrence
+            }
+        }
     }
     
     Vehicle* closestToIntersection() {
