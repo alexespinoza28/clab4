@@ -48,12 +48,6 @@ int main(int argc, const char * argv[]) {
     //create a turn map to initialize which road turns onto which other road
     // we need to make this because if a vehicle can turn , then its road must be replaced with the other road that its mapped to
     
-    unordered_map<Road*, Road*> turnMap;
-    
-    turnMap[north] = east;
-    turnMap[east] = south;
-    turnMap[south] = west;
-    turnMap[west] = north;
    
     TrafficLight light = TrafficLight(3,1);
     Time timer = Time(2, &light);

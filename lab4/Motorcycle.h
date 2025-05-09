@@ -28,6 +28,15 @@ public:
         }
         return false;
     }
+
+    void turn(){
+        //only turns if before intersection
+        if(!isBeforeIntersection()){
+            return;
+        }
+        //is there space
+        
+    }
     
     void move() override{
         if (!freeToMove()){
