@@ -92,6 +92,10 @@ public:
         return false;
     }
     
+    Road* getRoad() {
+        return this->road;
+    }
+    
     virtual bool freeToMove()  = 0;  // pure virtual, freeToMove depends on vehicle length
     virtual void turn();
     virtual void move()  = 0;

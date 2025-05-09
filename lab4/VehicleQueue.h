@@ -50,6 +50,9 @@ public:
                         delete v;
                     } else {
                         v->move();
+                        
+                        //logic here to take vehicle out of this quene and put it on other road quene
+                        
                         ++it;
                     }
                 }
