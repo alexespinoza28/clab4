@@ -30,11 +30,12 @@
 using namespace std;
 class VehicleQueue {
 private:
-    deque<Vehicle*> q;
+    
     Direction direction;
     Road* road;
     
 public:
+    deque<Vehicle*> q;
     static unordered_map<Direction, VehicleQueue*> qMap;
     VehicleQueue(Direction direction, Road* road) {
         
@@ -42,6 +43,7 @@ public:
         this->road = road;
         qMap[direction] = this;
     }
+    
     void moveVehicles(Color lightColor) {
         switch(lightColor) {
             case green:
@@ -93,10 +95,10 @@ public:
     }
     
     void insertVehicleAfterTurn(Vehicle* v, VehicleQueue* vq) {
-        int newDist = v->intersectionRadius();
+        Vehicle* target = vq->closestToIntersection();
         auto it = vq->q.begin();
         while (it != vq->q.end()) {
-            if ((*it)->intersectionRadius() > newDist) {
+            if ((*it) == target) {
                 break;
             }
             ++it;
@@ -105,8 +107,17 @@ public:
     }
     
     Vehicle* closestToIntersection() {
+        int min = 1000;
         Vehicle* bruh = nullptr;
-        
+        for (Vehicle* v: q) {
+            if (v->intersectionRadius() < 0) {
+                break;
+            }
+            if (v->intersectionRadius() < min) {
+                bruh = v;
+                break;
+            }
+        }
         return bruh;
         
     }
