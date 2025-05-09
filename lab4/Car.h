@@ -24,6 +24,8 @@ class Car: public Vehicle {
         for (int i = 0; i < length; i++) {
             placeList.push_back(road->getPlaceAt(i));
         }
+        road_index = {road->getDirection(), 0};
+
     }
     
     
@@ -45,6 +47,9 @@ class Car: public Vehicle {
         
         placeList.front()->markFree();
         placeList.pop_front();
+
+        get<1>(road_index) +=1;
+
      
     }
    
