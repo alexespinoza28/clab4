@@ -25,10 +25,11 @@
 #include <queue>
 #include <random>
 #include <ctime>
+#include <deque>
 using namespace std;
 class VehicleQueue {
 private:
-    queue<Vehicle*> q;
+    deque<Vehicle*> q;
     Direction direction;
     Color lightColor;
     Road* road;
@@ -39,7 +40,15 @@ public:
         this->direction = direction;
         this->road = road;
     }
-    
+    void moveVehicles() {
+        switch(lightColor) {
+            case green:
+                
+                break;
+        }
+        
+        
+    }
     void spawnVehicle() {
         static default_random_engine engine(static_cast<unsigned>(time(0)));
         uniform_int_distribution<int> dist(1, 100);
@@ -49,16 +58,16 @@ public:
         Vehicle* newVehicle = nullptr;
         if (roll <= 50) {
             newVehicle = new Car(road);
-            q.push(newVehicle);
+            q.push_back(newVehicle);
         } else if (roll <= 70) {
             newVehicle = new Bus(road);
-            q.push(newVehicle);
+            q.push_back(newVehicle);
         } else if (roll <= 90) {
             newVehicle = new Truck(road);
-            q.push(newVehicle);
+            q.push_back(newVehicle);
         } else {
             newVehicle = new Motorcycle(road);
-            q.push(newVehicle);
+            q.push_back(newVehicle);
         }
 
        
