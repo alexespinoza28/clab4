@@ -30,11 +30,17 @@ protected:
     Direction direction;
     
     Road* road;
+
     
     
 public:
+
+
     
     Vehicle(Road* road) {
+
+    
+
         if (!road) throw std::invalid_argument("Road pointer cannot be null");
         this->road = road;
         this->direction = road->getDirection();
@@ -49,6 +55,20 @@ public:
     //need to replace road is vehicle turns onto another road, may make this private since only the turn method will actually replace the road but well see
     void replaceRoad(Road* road) {
         this->road = road;
+    }
+
+    //returns negative if in front of the intersection, returns positive if before the intersection, returns 0 if at the intersection
+    int intersectionRadius(){
+        if(get<1>(road_index)+1 == 25 || get<1>(road_index)+1 == 26){
+            return 0;
+        }
+        else if(get<1>(road_index)+1 < 25){
+            return (25 - get<1>(road_index)+1);
+        }
+        else if(get<1>(road_index)+1 > 26){
+            return (26 - get<1>(road_index)+1);
+        }
+
     }
     
     bool isOnIntersection() {
@@ -77,6 +97,7 @@ public:
     }
     
     virtual bool freeToMove()  = 0;  // pure virtual, freeToMove depends on vehicle length
+    virtual void turn();
     virtual void move()  = 0;
     virtual ~Vehicle() = default;
     private:

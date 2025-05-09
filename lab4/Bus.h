@@ -29,6 +29,9 @@ public:
     }
    
     void move() override{
+        if (!freeToMove()){
+            return;
+        }
         //move two places forward and delete two places back
         placeList.back()->next()->occupy();
         placeList.push_back(placeList.back()->next());
@@ -42,6 +45,8 @@ public:
 
         get<1>(road_index) += 2;
     }
+
+  
    
 private:
     
