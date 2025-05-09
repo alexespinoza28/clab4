@@ -18,6 +18,7 @@ public:
         for (int i = 0; i < length; i++) {
             placeList.push_back(road->getPlaceAt(i));
         }
+        road_index = {road->getDirection(), 0};
     }
     bool freeToMove() override{
         int x = placeList.back()->freeConsecutiveNeighbors();
@@ -38,6 +39,8 @@ public:
         placeList.pop_front();
         placeList.front()->markFree();
         placeList.pop_front();
+
+        get<1>(road_index) += 2;
     }
    
 private:

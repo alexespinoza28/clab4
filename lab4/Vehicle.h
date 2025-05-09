@@ -10,6 +10,7 @@
 #include "Place.h"
 #include <vector>
 #include <deque>
+#include <tuple>
 #include "Road.h"
 #include "TrafficLight.h"
 using namespace std;
@@ -19,7 +20,7 @@ using namespace std;
 class Vehicle {
 protected:
     static const std::vector<std::string> colorMap;
-    
+    tuple<Direction, int> road_index;
     string name;
     int speed;
     int length;
