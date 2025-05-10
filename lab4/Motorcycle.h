@@ -19,6 +19,7 @@ public:
             placeList.push_back(road->getPlaceAt(i));
         }
         road_index = {road->getDirection(), 0};
+        identifier = 'm';
 
     }
     bool freeToMove() override{
@@ -29,7 +30,7 @@ public:
         return false;
     }
 
-    void turn(){
+    void  turn() override{
         //if on the intersection:
         if(!isOnIntersection()){
             return;
@@ -50,7 +51,7 @@ public:
         if (!freeToMove()){
             return;
         }
-        placeList.back()->next()->occupy();
+        placeList.back()->next()->occupy(identifier);
         placeList.push_back(placeList.back()->next());
         placeList.front()->markFree();
         placeList.pop_front();

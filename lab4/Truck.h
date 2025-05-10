@@ -17,6 +17,7 @@ public:
             placeList.push_back(road->getPlaceAt(i));
         }
         road_index = {road->getDirection(), 0};
+        identifier = 't';
     }
     
     bool freeToMove() override{
@@ -32,9 +33,9 @@ public:
             return;
         }
         //move two places forward and delete two places back
-        placeList.back()->next()->occupy();
+        placeList.back()->next()->occupy(identifier);
         placeList.push_back(placeList.back()->next());
-        placeList.back()->next()->occupy();
+        placeList.back()->next()->occupy(identifier);
         placeList.push_back(placeList.back()->next());
        
         placeList.front()->markFree();

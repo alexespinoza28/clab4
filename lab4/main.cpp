@@ -40,33 +40,34 @@ string temp_func(Color color){
 }
 
 void printIntersectionCharMap() {
-    const char* layout[] = {
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "**************          *          *******************",
-        "                        *                             ",
-        "                        *                             ",
-        "                        *                             ",
-        "******************************************************",
-        "                        *                             ",
-        "                        *                             ",
-        "                        *                             ",
-        "**************          *          *******************",
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "             *          *          *                  ",
-        "             *          *          *                  "
+    const int HEIGHT = 20;
+    const int WIDTH = 20;
+    const char layout[HEIGHT][WIDTH+1] = {
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "_______ | | |_______",
+        "                    ",
+        "________     _______",
+        "                    ",
+        "________     _______",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
+        "        | | |       ",
     };
 
     int height = sizeof(layout) / sizeof(layout[0]);
     for (int i = 0; i < height; i++) {
-        std::cout << layout[i] << std::endl;
+        cout << layout[i] << endl;
     }
 }
 
@@ -84,7 +85,7 @@ int main(int argc, const char * argv[]) {
     Time timer = Time(2, &light);
     
     printIntersectionCharMap();
-    /*
+    
     while(true){
         if(timer.getElapsedTime() == 20){
             break;
@@ -96,15 +97,8 @@ int main(int argc, const char * argv[]) {
         cout<<"east color: "<<temp_func(light.getColor(Direction::east))<<endl;
         timer.tick();
     }
-    */
+    
     //clear memory for road objects
-    delete north;
-    delete east;
-    delete south;
-    delete west;
-    for (Place* p : Road::sharedIntersectionPlaces) {
-        delete p;
-    }
-    Road::sharedIntersectionPlaces.clear();
+    Road().clearAllMemory();
     return 0;
 }

@@ -25,6 +25,7 @@ class Car: public Vehicle {
             placeList.push_back(road->getPlaceAt(i));
         }
         road_index = {road->getDirection(), 0};
+        identifier = 'c';
 
     }
     
@@ -42,7 +43,7 @@ class Car: public Vehicle {
             return;
         }
         //move one place forward and delete one place back
-        placeList.back()->next()->occupy();
+        placeList.back()->next()->occupy(identifier);
         placeList.push_back(placeList.back()->next());
         
         placeList.front()->markFree();

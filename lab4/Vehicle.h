@@ -28,25 +28,25 @@ protected:
     deque<Place*> placeList;
     bool moveForward;
     Direction direction;
-    
     Road* road;
-
+    char identifier = ' ';
     
     
 public:
 
 
-    
+    //assign first places of road to vehicle
     Vehicle(Road* road) {
-
-    
-
         if (!road) throw std::invalid_argument("Road pointer cannot be null");
         this->road = road;
         this->direction = road->getDirection();
         speed = 0;
         weight = 0;
         moveForward = false;
+        for (int i = 0; i < length; i++) {
+            placeList.push_back(road->getPlaceAt(i));
+            road->getPlaceAt(i)->markFree();
+        }
     }
     bool atEndOfRoad() const {
         return placeList.back() == road->getPlaceAt(road->getNumPlaces() - 1);

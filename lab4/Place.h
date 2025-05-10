@@ -12,6 +12,7 @@ class Road;
 class Place {
 
 public:
+    char identifier = ' ';
     friend class Road;
     Place() {
         isFreeFlag = true;
@@ -37,11 +38,13 @@ public:
     bool isFree() {
         return isFreeFlag;
     }
-    void occupy() {
+    void occupy(char identifier) {
         isFreeFlag = false;
+        this->identifier = identifier;
     }
     void markFree() {
         isFreeFlag = true;
+        identifier = ' ';
     }
     Place* next() {
         return adjacent[0];
