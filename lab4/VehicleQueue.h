@@ -136,16 +136,37 @@ public:
         int roll = dist(engine);
         
         Vehicle* newVehicle = nullptr;
+        //must check if firt places in road object are free before spawining a vehicle
         if (roll <= 50) {
+            for (int i = 0; i < 2; i++) {
+                if (!road->getPlaceAt(i)->isFree()) {
+                    return;
+                }
+            }
             newVehicle = new Car(road);
             q.push_back(newVehicle);
         } else if (roll <= 70) {
+            for (int i = 0; i < 4; i++) {
+                if (!road->getPlaceAt(i)->isFree()) {
+                    return;
+                }
+            }
             newVehicle = new Bus(road);
             q.push_back(newVehicle);
         } else if (roll <= 90) {
+            for (int i = 0; i < 5; i++) {
+                if (!road->getPlaceAt(i)->isFree()) {
+                    return;
+                }
+            }
             newVehicle = new Truck(road);
             q.push_back(newVehicle);
         } else {
+            for (int i = 0; i < 1; i++) {
+                if (!road->getPlaceAt(i)->isFree()) {
+                    return;
+                }
+            }
             newVehicle = new Motorcycle(road);
             q.push_back(newVehicle);
         }
