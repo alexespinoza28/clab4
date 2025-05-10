@@ -26,6 +26,34 @@ const vector<string> Vehicle::colorMap = {
 };
 static const int ROAD_SIZE = 20;
 
+// south i = 9(const),  j = 0 -> 19
+ //north i = 11(const), j = 19 -> 0
+ //east i = 19 -> 0 , j = 11(const)
+ //east i = 0 -> 19 , j = 9(const)
+ const char LAYOUT[ROAD_SIZE][ROAD_SIZE+1] = {
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "_______ | | |_______",
+     "                    ",
+     "________     _______",
+     "                    ",
+     "________     _______",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+     "        | | |       ",
+ };
+
+
 string temp_func(Color color){
     switch(color){
         case Color::red:
@@ -40,29 +68,35 @@ string temp_func(Color color){
 }
 
 void printIntersectionCharMap() {
-    const int HEIGHT = 20;
-    const int WIDTH = 20;
-    const char layout[HEIGHT][WIDTH+1] = {
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "_______ | | |_______",
+   
+   // south i = 9(const),  j = 0 -> 19
+    //north i = 10(const), j = 19 -> 0
+    //west i = 19 -> 0 , j = 8(const)
+    //east i = 0 -> 19 , j = 9(const)
+    //top intersecton i = 9 - 10 , j =8
+    //bottom intersecton i = 9 - 10 , j =9
+    char layout[ROAD_SIZE][ROAD_SIZE+1] = {
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "________|  |________",
         "                    ",
-        "________     _______",
         "                    ",
-        "________     _______",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
-        "        | | |       ",
+        "________    ________",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        "        |  |        ",
+        
     };
 
     int height = sizeof(layout) / sizeof(layout[0]);
@@ -72,6 +106,7 @@ void printIntersectionCharMap() {
 }
 
 int main(int argc, const char * argv[]) {
+    char printedRoad[ROAD_SIZE][ROAD_SIZE+1];
     Road* north = new Road();
     Road* east = new Road();
     Road* south = new Road();
@@ -96,6 +131,11 @@ int main(int argc, const char * argv[]) {
         cout<<"west color: "<<temp_func(light.getColor(Direction::west))<<endl;
         cout<<"east color: "<<temp_func(light.getColor(Direction::east))<<endl;
         timer.tick();
+        
+        
+        //psudo code,
+        // each iteration call move vehicles and spawn
+        //make sure each iteration passes the light object in
     }
     
     //clear memory for road objects

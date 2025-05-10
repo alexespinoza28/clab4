@@ -12,7 +12,8 @@ class Road;
 class Place {
 
 public:
-    char identifier = ' ';
+    
+    //locations on the road char array
     friend class Road;
     Place() {
         isFreeFlag = true;
@@ -49,13 +50,27 @@ public:
     Place* next() {
         return adjacent[0];
     }
-    
+    char getIdentifier() {
+        return identifier;
+    }
+    void setLocation(int x, int y) {
+        this->x = x;
+        this->y = y;
+    }
+    int getX() {
+        return x;
+    }
+    int getY() {
+        return y;
+    }
     
 private:
     int neighborsCount; // use to make sure we dont overassign adjecent places
     Place* adjacent[4];
+    char identifier = ' ';
     bool isFreeFlag;
-    
+    int x;
+    int y;
     void assignAdjecent(Place* adj) {
         if (neighborsCount == 4) {
             //cout << "Place object already has 4 neighbors" << endl;

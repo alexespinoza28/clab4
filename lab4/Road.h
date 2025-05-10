@@ -22,6 +22,14 @@ enum Direction {
 class Road {
    
 public:
+    static inline int southI = 9;
+    static inline int southJ = 0;
+    static inline int northI = 10;
+    static inline int northJ = 19;
+    static inline int westI = 19;
+    static inline int westJ = 8;
+    static inline int eastI = 0;
+    static inline int eastJ = 9;
     static inline vector<Place*> sharedIntersectionPlaces;
     static inline void clearAllMemory() {
         for (Place* p : sharedIntersectionPlaces) {
