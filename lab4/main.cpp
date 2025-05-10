@@ -78,10 +78,13 @@ void printIntersectionCharMap(Road* north, Road* south, Road* east, Road* west) 
         "        |  |        ",
         
     };
+    
     north->populateRoad(layout);
     south->populateRoad(layout);
     east->populateRoad(layout);
-    west->populateRoad(layout); 
+    west->populateRoad(layout);
+     
+    
     for (int i = 0; i < ROAD_SIZE; i++) {
         for (int j = 0; j < ROAD_SIZE; j++) {
             cout << layout[i][j];

@@ -29,7 +29,10 @@ public:
     //use this to easily see if an vehicle can move half of its length. ie if front of bus place list Place has < 2 consecutive neighbors, it cannot move forward.
     int freeConsecutiveNeighbors() {
         int count = 0;
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < neighborsCount; i++) {
+            if (((x + i) >=19) || ((y + i) >=19) ) {
+                break;
+            }
             if (!adjacent[i]->isFree()) {
                 break;
             }

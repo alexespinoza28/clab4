@@ -23,6 +23,7 @@ class Car: public Vehicle {
         //initialize vehicles place deque with the first however many place objects at the start of each road
         for (int i = 0; i < length; i++) {
             placeList.push_back(road->getPlaceAt(i));
+            road->getPlaceAt(i)->occupy(identifier);
         }
         road_index = {road->getDirection(), 0};
         identifier = 'c';
