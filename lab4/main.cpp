@@ -17,6 +17,8 @@
 #include "Place.h"
 #include "Time.h"
 #include <unordered_map>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -30,28 +32,6 @@ static const int ROAD_SIZE = 20;
  //north i = 11(const), j = 19 -> 0
  //east i = 19 -> 0 , j = 11(const)
  //east i = 0 -> 19 , j = 9(const)
- const char LAYOUT[ROAD_SIZE][ROAD_SIZE+1] = {
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "_______ | | |_______",
-     "                    ",
-     "________     _______",
-     "                    ",
-     "________     _______",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
-     "        | | |       ",
- };
 
 
 string temp_func(Color color){
@@ -67,7 +47,7 @@ string temp_func(Color color){
     }
 }
 
-void printIntersectionCharMap() {
+void printIntersectionCharMap(Road* north, Road* south, Road* east, Road* west) {
    
    // south i = 9(const),  j = 0 -> 19
     //north i = 10(const), j = 19 -> 0
@@ -98,20 +78,29 @@ void printIntersectionCharMap() {
         "        |  |        ",
         
     };
-
-    int height = sizeof(layout) / sizeof(layout[0]);
-    for (int i = 0; i < height; i++) {
-        cout << layout[i] << endl;
+    north->populateRoad(layout);
+    south->populateRoad(layout);
+    east->populateRoad(layout);
+    west->populateRoad(layout); 
+    for (int i = 0; i < ROAD_SIZE; i++) {
+        for (int j = 0; j < ROAD_SIZE; j++) {
+            cout << layout[i][j];
+        }
+        cout << endl;
     }
 }
 
 int main(int argc, const char * argv[]) {
-    char printedRoad[ROAD_SIZE][ROAD_SIZE+1];
+    
     Road* north = new Road();
     Road* east = new Road();
     Road* south = new Road();
     Road* west = new Road();
     
+    VehicleQueue* northVq = new VehicleQueue(Direction::north, north);
+    VehicleQueue* eastVq = new VehicleQueue(Direction::east, east);
+    VehicleQueue* southVq = new VehicleQueue(Direction::south, south);
+    VehicleQueue* westVq = new VehicleQueue(Direction::west, west);
     //create a turn map to initialize which road turns onto which other road
     // we need to make this because if a vehicle can turn , then its road must be replaced with the other road that its mapped to
     
@@ -119,7 +108,7 @@ int main(int argc, const char * argv[]) {
     TrafficLight light = TrafficLight(3,1);
     Time timer = Time(2, &light);
     
-    printIntersectionCharMap();
+   
     
     while(true){
         if(timer.getElapsedTime() == 20){
@@ -131,11 +120,24 @@ int main(int argc, const char * argv[]) {
         cout<<"west color: "<<temp_func(light.getColor(Direction::west))<<endl;
         cout<<"east color: "<<temp_func(light.getColor(Direction::east))<<endl;
         timer.tick();
+        northVq->moveVehicles(light.getColor(Direction::north));
+        eastVq->moveVehicles(light.getColor(Direction::east));
+        southVq->moveVehicles(light.getColor(Direction::south));
+        westVq->moveVehicles(light.getColor(Direction::west));
+        
+        northVq->spawnVehicle();
+        eastVq->spawnVehicle();
+        westVq->spawnVehicle();
+        southVq->spawnVehicle();
         
         
+        printIntersectionCharMap(north,east,south,west);
+        cout << " " << endl;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         //psudo code,
         // each iteration call move vehicles and spawn
         //make sure each iteration passes the light object in
+        
     }
     
     //clear memory for road objects

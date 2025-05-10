@@ -15,7 +15,9 @@ public:
     
     //locations on the road char array
     friend class Road;
-    Place() {
+    Place(int x, int y) {
+        this->x = x;
+        this->y = y;
         isFreeFlag = true;
         neighborsCount = 0;
         

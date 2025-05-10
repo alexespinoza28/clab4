@@ -30,7 +30,7 @@ public:
         return false;
     }
 
-    void  turn() override{
+   /* void  turn() override{
         //if on the intersection:
         if(!isOnIntersection()){
             return;
@@ -45,7 +45,7 @@ public:
             
         }
         
-    }
+    } */
     
     void move() override{
         if (!freeToMove()){

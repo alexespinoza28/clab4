@@ -22,14 +22,14 @@ enum Direction {
 class Road {
    
 public:
-    static inline int southI = 9;
-    static inline int southJ = 0;
     static inline int northI = 10;
     static inline int northJ = 19;
+    static inline int southI = 9;
+    static inline int southJ = 0;
     static inline int westI = 19;
-    static inline int westJ = 8;
+    static inline int westJ = 7;
     static inline int eastI = 0;
-    static inline int eastJ = 9;
+    static inline int eastJ = 8;
     static inline vector<Place*> sharedIntersectionPlaces;
     static inline void clearAllMemory() {
         for (Place* p : sharedIntersectionPlaces) {
@@ -50,9 +50,10 @@ public:
         
         //now we need to initialize our places which link to each other
         for (int i = 0; i < numPlaces; i++) {
-            //  ROAD 0
+            //  ROAD 0, North
             if (roadCount == 0) {
-                Place* p = new Place();
+                Place* p = new Place(northI,northJ);
+                northJ--;
                 placeList.push_back(p);
                 // num places/2 is 25 and + 1 is 26
                 if (i == numPlaces/2 || i == (numPlaces/2) + 1) {
@@ -64,7 +65,8 @@ public:
                 if (i == (numPlaces/2) + 1) {
                     placeList.push_back(sharedIntersectionPlaces[0]);  // want road 0 25
                 } else {
-                    placeList.push_back(new Place());
+                    placeList.push_back(new Place(eastI,eastJ));
+                    eastI++;
                     if (i == numPlaces/2) {
                         sharedIntersectionPlaces.push_back(placeList.back()); //vec2 = road 1 25
                     }
@@ -75,7 +77,8 @@ public:
                 if (i == (numPlaces/2) + 1) {
                     placeList.push_back(sharedIntersectionPlaces[2]);  // index 25 of road 1
                 } else {
-                    Place* p = new Place();
+                    Place* p = new Place(southI,southJ);
+                    southJ++;
                     placeList.push_back(p);
                     if (i == numPlaces/2) {
                         sharedIntersectionPlaces.push_back(p);  // 3 = Road 2 index 25
@@ -91,7 +94,8 @@ public:
                 } else if (i == (numPlaces/2) + 1) {
                     placeList.push_back(sharedIntersectionPlaces[3]);
                 } else {
-                    placeList.push_back(new Place());
+                    placeList.push_back(new Place(westI, westJ));
+                    westJ--;
                 }
 
             }
@@ -139,6 +143,14 @@ public:
             return nullptr;
         }
         return placeList[index];
+    }
+    
+    void populateRoad(char (&board)[20][21]) {
+        for (Place* p: placeList) {
+            int x = p->getX();
+            int y = p->getY();
+            board[x][y] = p->getIdentifier();
+        }
     }
     
     private:

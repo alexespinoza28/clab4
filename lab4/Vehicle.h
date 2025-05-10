@@ -73,7 +73,7 @@ public:
     
     bool isOnIntersection() {
         for (Place* p: placeList) {
-            for (Place* x: Road().sharedIntersectionPlaces) {
+            for (Place* x: Road::sharedIntersectionPlaces) {
                 if (p == x) {
                     return true;
                 }
@@ -84,7 +84,7 @@ public:
     
     //want to use this method if the vehicle is about to hit the intersection, in order to figure otu wheter to turn or go straight
     bool isBeforeIntersection() {
-        for (Place* x : Road().sharedIntersectionPlaces) {
+        for (Place* x : Road::sharedIntersectionPlaces) {
             if (placeList.back()->next() == x) {
                 return true;
             }
@@ -117,7 +117,7 @@ public:
 
 
     virtual bool freeToMove()  = 0;  // pure virtual, freeToMove depends on vehicle length
-    virtual void turn();
+    //virtual void turn();
     virtual void move()  = 0;
     virtual ~Vehicle() = default;
     private:

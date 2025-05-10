@@ -36,12 +36,12 @@ private:
     
 public:
     deque<Vehicle*> q;
-    static unordered_map<Direction, VehicleQueue*> qMap;
+    //static unordered_map<Direction, VehicleQueue*> qMap;
     VehicleQueue(Direction direction, Road* road) {
         
         this->direction = direction;
         this->road = road;
-        qMap[direction] = this;
+        //qMap[direction] = this;
     }
     
     void moveVehicles(Color lightColor) {
