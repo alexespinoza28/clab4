@@ -40,19 +40,16 @@ class Car: public Vehicle {
     }
     
     void move() override {
-        if (!freeToMove()){
-            return;
-        }
-        //move one place forward and delete one place back
-        placeList.back()->next()->occupy(identifier);
-        placeList.push_back(placeList.back()->next());
-        
+        if (!freeToMove()) return;
+
+        Place* nextPlace = placeList.back()->next();
+        nextPlace->occupy(identifier);
+        placeList.push_back(nextPlace);
+
         placeList.front()->markFree();
-        placeList.pop_front();
+        placeList.pop_front();  // correct for deque
 
-        get<1>(road_index) +=1;
-
-     
+        get<1>(road_index) += 1;
     }
    
     

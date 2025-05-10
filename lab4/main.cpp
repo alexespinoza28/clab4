@@ -123,15 +123,17 @@ int main(int argc, const char * argv[]) {
         cout<<"west color: "<<temp_func(light.getColor(Direction::west))<<endl;
         cout<<"east color: "<<temp_func(light.getColor(Direction::east))<<endl;
         timer.tick();
+        northVq->spawnVehicle();
+        eastVq->spawnVehicle();
+        westVq->spawnVehicle();
+        southVq->spawnVehicle();
+        
         northVq->moveVehicles(light.getColor(Direction::north));
         eastVq->moveVehicles(light.getColor(Direction::east));
         southVq->moveVehicles(light.getColor(Direction::south));
         westVq->moveVehicles(light.getColor(Direction::west));
         
-        northVq->spawnVehicle();
-        eastVq->spawnVehicle();
-        westVq->spawnVehicle();
-        southVq->spawnVehicle();
+        
         
         
         printIntersectionCharMap(north,east,south,west);
