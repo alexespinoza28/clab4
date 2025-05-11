@@ -55,7 +55,10 @@ void printIntersectionCharMap(Road* north, Road* south, Road* east, Road* west) 
     //east i = 0 -> 19 , j = 9(const)
     //top intersecton i = 9 - 10 , j =8
     //bottom intersecton i = 9 - 10 , j =9
+    
+    //middle four are [8][9],[8][10], [9][9] [9][10]
     char layout[ROAD_SIZE][ROAD_SIZE+1] = {
+        "        |  |        ",
         "        |  |        ",
         "        |  |        ",
         "        |  |        ",
@@ -75,8 +78,7 @@ void printIntersectionCharMap(Road* north, Road* south, Road* east, Road* west) 
         "        |  |        ",
         "        |  |        ",
         "        |  |        ",
-        "        |  |        ",
-        
+       
     };
     
     north->populateRoad(layout);
@@ -117,7 +119,7 @@ int main(int argc, const char * argv[]) {
     southVq->spawnVehicle();
     printIntersectionCharMap(north,east,south,west);
     cout << " " << endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    //std::this_thread::sleep_for(std::chrono::seconds(1));
     
     while(true){
         if(timer.getElapsedTime() == 20){
@@ -136,16 +138,16 @@ int main(int argc, const char * argv[]) {
         southVq->moveVehicles(light.getColor(Direction::south));
         westVq->moveVehicles(light.getColor(Direction::west));
         
-        northVq->spawnVehicle();
-        //eastVq->spawnVehicle();
-        //westVq->spawnVehicle();
-        southVq->spawnVehicle();
+        //northVq->spawnVehicle();
+        eastVq->spawnVehicle();
+        westVq->spawnVehicle();
+        //southVq->spawnVehicle();
         
         
         
         printIntersectionCharMap(north,east,south,west);
         cout << " " << endl;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        //std::this_thread::sleep_for(std::chrono::seconds(1));
         //psudo code,
         // each iteration call move vehicles and spawn
         //make sure each iteration passes the light object in

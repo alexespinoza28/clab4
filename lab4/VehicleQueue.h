@@ -57,9 +57,7 @@ public:
                         delete v;
                     } else {
                         v->move();
-                        
                         //logic here to take vehicle out of this quene and put it on other road quene
-                        
                         ++it;
                     }
                 }
@@ -89,7 +87,7 @@ public:
                     if (v->atEndOfRoad()) {
                         it = q.erase(it);
                         delete v;
-                    } else if (!v->isBeforeIntersection()) {
+                    } else if (!v->isBeforeIntersection() ||v->isOnIntersection()) {
                         v->move();
                         ++it;
                     } else {
@@ -140,7 +138,7 @@ public:
         
         Vehicle* newVehicle = nullptr;
         //must check if firt places in road object are free before spawining a vehicle
-        if (roll <= 10) {
+        if (roll <= 40) {
             for (int i = 0; i < 2; i++) {
                 if (!road->getPlaceAt(i)->isFree()) {
                     return;

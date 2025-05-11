@@ -80,6 +80,9 @@ public:
     
     //want to use this method if the vehicle is about to hit the intersection, in order to figure otu wheter to turn or go straight
     bool isBeforeIntersection() {
+        if (isOnIntersection()) {
+            return false;
+        }
         for (Place* x : Road::sharedIntersectionPlaces) {
             if (placeList.back()->next() == x) {
                 return true;

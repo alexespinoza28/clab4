@@ -26,9 +26,9 @@ public:
     static inline int northJ = 10;
     static inline int southI = 0;
     static inline int southJ = 9;
-    static inline int westI = 8;
+    static inline int westI = 9;
     static inline int westJ = 19;
-    static inline int eastI = 9;
+    static inline int eastI = 10;
     static inline int eastJ = 0;
     static inline vector<Place*> sharedIntersectionPlaces;
     static inline void clearAllMemory() {
