@@ -17,7 +17,7 @@ class Car: public Vehicle {
     
 
     Car(Road* road) : Vehicle(road) {
-        
+        identifier = 'c';
         length = 2;
         
         //initialize vehicles place deque with the first however many place objects at the start of each road
@@ -26,7 +26,7 @@ class Car: public Vehicle {
             road->getPlaceAt(i)->occupy(identifier);
         }
         road_index = {road->getDirection(), 0};
-        identifier = 'c';
+        
 
     }
     

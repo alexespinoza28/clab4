@@ -111,7 +111,13 @@ int main(int argc, const char * argv[]) {
     TrafficLight light = TrafficLight(3,1);
     Time timer = Time(2, &light);
     
-   
+    northVq->spawnVehicle();
+    eastVq->spawnVehicle();
+    westVq->spawnVehicle();
+    southVq->spawnVehicle();
+    printIntersectionCharMap(north,east,south,west);
+    cout << " " << endl;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     
     while(true){
         if(timer.getElapsedTime() == 20){
@@ -122,17 +128,18 @@ int main(int argc, const char * argv[]) {
         cout<<"south color: "<<temp_func(light.getColor(Direction::south))<<endl;
         cout<<"west color: "<<temp_func(light.getColor(Direction::west))<<endl;
         cout<<"east color: "<<temp_func(light.getColor(Direction::east))<<endl;
+        
         timer.tick();
-        northVq->spawnVehicle();
-        eastVq->spawnVehicle();
-        westVq->spawnVehicle();
-        southVq->spawnVehicle();
         
         northVq->moveVehicles(light.getColor(Direction::north));
         eastVq->moveVehicles(light.getColor(Direction::east));
         southVq->moveVehicles(light.getColor(Direction::south));
         westVq->moveVehicles(light.getColor(Direction::west));
         
+        northVq->spawnVehicle();
+        //eastVq->spawnVehicle();
+        //westVq->spawnVehicle();
+        southVq->spawnVehicle();
         
         
         
@@ -144,7 +151,10 @@ int main(int argc, const char * argv[]) {
         //make sure each iteration passes the light object in
         
     }
-    
+    delete north;
+    delete south;
+    delete east;
+    delete west;
     //clear memory for road objects
     Road().clearAllMemory();
     return 0;

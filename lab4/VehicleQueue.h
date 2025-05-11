@@ -33,6 +33,9 @@ private:
     
     Direction direction;
     Road* road;
+
+    static default_random_engine engine;
+    static uniform_int_distribution<int> dist;
     
 public:
     deque<Vehicle*> q;
@@ -72,6 +75,9 @@ public:
                         v->move();
                         ++it;
                     } else {
+                        if (!v->isBeforeIntersection()) {
+                            v->move();
+                        }
                         ++it;
                     }
                 }
@@ -130,14 +136,11 @@ public:
     }
     
     void spawnVehicle() {
-        static default_random_engine engine(static_cast<unsigned>(time(0)));
-        uniform_int_distribution<int> dist(1, 100);
-
         int roll = dist(engine);
         
         Vehicle* newVehicle = nullptr;
         //must check if firt places in road object are free before spawining a vehicle
-        if (roll <= 50) {
+        if (roll <= 10) {
             for (int i = 0; i < 2; i++) {
                 if (!road->getPlaceAt(i)->isFree()) {
                     return;
@@ -146,6 +149,7 @@ public:
             newVehicle = new Car(road);
             q.push_back(newVehicle);
         } else if (roll <= 70) {
+            return;
             for (int i = 0; i < 4; i++) {
                 if (!road->getPlaceAt(i)->isFree()) {
                     return;
@@ -154,6 +158,7 @@ public:
             newVehicle = new Bus(road);
             q.push_back(newVehicle);
         } else if (roll <= 90) {
+            return;
             for (int i = 0; i < 5; i++) {
                 if (!road->getPlaceAt(i)->isFree()) {
                     return;
@@ -162,6 +167,7 @@ public:
             newVehicle = new Truck(road);
             q.push_back(newVehicle);
         } else {
+            return;
             for (int i = 0; i < 1; i++) {
                 if (!road->getPlaceAt(i)->isFree()) {
                     return;
@@ -175,6 +181,7 @@ public:
     }
 };
 
-
+default_random_engine VehicleQueue::engine(static_cast<unsigned>(time(0)));
+uniform_int_distribution<int> VehicleQueue::dist(1, 100);
 
 #endif /* VehicleQueue_h */

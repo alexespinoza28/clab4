@@ -33,7 +33,9 @@ public:
     static inline vector<Place*> sharedIntersectionPlaces;
     static inline void clearAllMemory() {
         for (Place* p : sharedIntersectionPlaces) {
-            delete p;
+            if (p) {
+                delete p;
+            }
         }
         sharedIntersectionPlaces.clear();
     }

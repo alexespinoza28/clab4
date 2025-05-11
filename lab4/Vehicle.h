@@ -42,11 +42,7 @@ public:
         this->direction = road->getDirection();
         speed = 0;
         weight = 0;
-        moveForward = false;
-        for (int i = 0; i < length; i++) {
-            placeList.push_back(road->getPlaceAt(i));
-            road->getPlaceAt(i)->markFree();
-        }
+        
     }
     bool atEndOfRoad() const {
         return placeList.back() == road->getPlaceAt(road->getNumPlaces() - 1);
