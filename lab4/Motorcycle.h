@@ -51,8 +51,8 @@ public:
         if (!freeToMove()){
             return;
         }
-        placeList.back()->next()->occupy(identifier);
-        placeList.push_back(placeList.back()->next());
+        placeList.back()->next(isOnIntersection(), direction)->occupy(identifier);
+        placeList.push_back(placeList.back()->next(isOnIntersection(), direction));
         placeList.front()->markFree();
         placeList.pop_front();
 

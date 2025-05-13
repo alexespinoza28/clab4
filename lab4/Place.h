@@ -54,10 +54,24 @@ public:
         isFreeFlag = true;
         identifier = ' ';
     }
+   //will need to fix when turn is implemented
     Place* next(bool isOnIntersection, Direction direction) {
         if (!isOnIntersection) {
             return adjacent[0];
         } else {
+            switch (direction) {
+                case north:
+                    return adjacent[0];
+                    break;
+                case south:
+                    return adjacent[3];
+                case east:
+                    return adjacent[1];
+                case west:
+                    return adjacent[2];
+                default:
+                    break;
+            }
             return adjacent[1];
         }
     }

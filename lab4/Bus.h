@@ -34,10 +34,10 @@ public:
             return;
         }
         //move two places forward and delete two places back
-        placeList.back()->next()->occupy(identifier);
-        placeList.push_back(placeList.back()->next());
-        placeList.back()->next()->occupy(identifier);
-        placeList.push_back(placeList.back()->next());
+        placeList.back()->next(isOnIntersection(), direction)->occupy(identifier);
+        placeList.push_back(placeList.back()->next(isOnIntersection(), direction));
+        placeList.back()->next(isOnIntersection(), direction)->occupy(identifier);
+        placeList.push_back(placeList.back()->next(isOnIntersection(), direction));
        
         placeList.front()->markFree();
         placeList.pop_front();

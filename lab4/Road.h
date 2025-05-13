@@ -41,7 +41,7 @@ public:
         Place* four = sharedIntersectionPlaces[3];
         
         one->reassignNeighbor(two, 0);
-        one->reassignNeighbor(east->getPlaceAt(27), 1);
+        one->reassignNeighbor(east->getPlaceAt(24), 1);
         one->reassignNeighbor(three, 2);
         one->reassignNeighbor(north->getPlaceAt(24), 3);
         
