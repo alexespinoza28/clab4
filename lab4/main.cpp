@@ -101,6 +101,7 @@ int main(int argc, const char * argv[]) {
     Road* east = new Road();
     Road* south = new Road();
     Road* west = new Road();
+    Road().reIndexIntersection(north, east, south, west);
     
     VehicleQueue* northVq = new VehicleQueue(Direction::north, north);
     VehicleQueue* eastVq = new VehicleQueue(Direction::east, east);

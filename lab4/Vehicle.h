@@ -85,7 +85,7 @@ public:
             return false;
         }
         for (Place* x : Road::sharedIntersectionPlaces) {
-            if (placeList.back()->next() == x) {
+            if (placeList.back()->next(isOnIntersection()) == x) {
                 return true;
             }
         }

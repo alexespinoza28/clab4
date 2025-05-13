@@ -33,7 +33,7 @@ public:
         }
         sharedIntersectionPlaces.clear();
     }
-    static inline void reIndexIntersection(Road* north, Road* south, Road* east, Road* west) {
+    static inline void reIndexIntersection(Road* north, Road* east, Road* south, Road* west) {
         
         Place* one = sharedIntersectionPlaces[0];
         Place* two = sharedIntersectionPlaces[1];
@@ -120,6 +120,7 @@ public:
                     placeList.push_back(new Place(westI, westJ));
                     westJ--;
                 }
+                
                 
             }
         }

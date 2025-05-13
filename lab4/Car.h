@@ -41,8 +41,8 @@ class Car: public Vehicle {
     
     void move() override {
         if (!freeToMove()) return;
-
-        Place* nextPlace = placeList.back()->next();
+        
+        Place* nextPlace = placeList.back()->next(isOnIntersection(), direction);
         nextPlace->occupy(identifier);
         placeList.push_back(nextPlace);
 
