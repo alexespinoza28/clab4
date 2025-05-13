@@ -9,15 +9,9 @@
 #define Road_h
 #include <list>
 #include "Place.h"
-
+#include "Enums.h"
 using namespace std;
 
-enum Direction {
-    north,
-    west,
-    south,
-    east
-};
 
 class Road {
    
@@ -38,6 +32,33 @@ public:
             }
         }
         sharedIntersectionPlaces.clear();
+    }
+    static inline void reIndexIntersection(Road* north, Road* south, Road* east, Road* west) {
+        
+        Place* one = sharedIntersectionPlaces[0];
+        Place* two = sharedIntersectionPlaces[1];
+        Place* three = sharedIntersectionPlaces[2];
+        Place* four = sharedIntersectionPlaces[3];
+        
+        one->reassignNeighbor(two, 0);
+        one->reassignNeighbor(east->getPlaceAt(27), 1);
+        one->reassignNeighbor(three, 2);
+        one->reassignNeighbor(north->getPlaceAt(24), 3);
+        
+        two->reassignNeighbor(north->getPlaceAt(27), 0);
+        two->reassignNeighbor(west->getPlaceAt(24), 1);
+        two->reassignNeighbor(four, 2);
+        two->reassignNeighbor(one, 3);
+        
+        three->reassignNeighbor(four, 0);
+        three->reassignNeighbor(one, 1);
+        three->reassignNeighbor(east->getPlaceAt(24), 2);
+        three->reassignNeighbor(south->getPlaceAt(27), 3);
+        
+        four->reassignNeighbor(south->getPlaceAt(24), 0);
+        four->reassignNeighbor(two, 1);
+        four->reassignNeighbor(west->getPlaceAt(27), 2);
+        four->reassignNeighbor(three, 3);
     }
     Road() {
         if (roadCount == 0) {
@@ -99,7 +120,7 @@ public:
                     placeList.push_back(new Place(westI, westJ));
                     westJ--;
                 }
-
+                
             }
         }
 

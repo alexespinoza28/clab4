@@ -13,6 +13,7 @@
 #include <tuple>
 #include "Road.h"
 #include "TrafficLight.h"
+#include "Enums.h"
 using namespace std;
 
 
@@ -99,16 +100,16 @@ public:
     Direction rightTurn(Direction direction){
         switch(direction){
             case north:
-                return east;
+                return Direction::east;
 
-            case south:
-                return west;
+            case Direction::south:
+                return Direction::west;
 
-            case west:
-                return north;
+            case Direction::west:
+                return Direction::north;
 
-            case east:
-                return south;
+            case Direction::east:
+                return Direction::south;
 
         }
     }

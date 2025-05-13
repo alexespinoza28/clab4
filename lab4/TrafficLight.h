@@ -10,12 +10,8 @@
 #include "Road.h"
 #include "Place.h"
 #include <unordered_map>
+#include "Enums.h"
 
-enum Color {
-    red,
-    green,
-    yellow
-};
 class TrafficLight {
     friend class Time;
 public:
@@ -55,12 +51,12 @@ private:
         //if north and south are green
         if(lightStatus[Direction::north] == Color::green && lightStatus[Direction::south] == Color::green){
             lightStatus[Direction::north] = Color::yellow;
-            lightStatus[Direction::south] = Color::yellow; 
+            lightStatus[Direction::south] = Color::yellow;
         }
         //if west and east are green
         else if(lightStatus[Direction::west] == Color::green && lightStatus[Direction::east] == Color::green){
             lightStatus[Direction::west] = Color::yellow;
-            lightStatus[Direction::east] = Color::yellow; 
+            lightStatus[Direction::east] = Color::yellow;
         }
     }
 
@@ -69,16 +65,16 @@ private:
        //if north and south are green
        if(lightStatus[Direction::north] == Color::yellow && lightStatus[Direction::south] == Color::yellow){
         lightStatus[Direction::north] = Color::red;
-        lightStatus[Direction::south] = Color::red; 
+        lightStatus[Direction::south] = Color::red;
         lightStatus[Direction::east] = Color::green;
         lightStatus[Direction::west] = Color::green;
     }
     //if west and east are green
     else if(lightStatus[Direction::west] == Color::yellow && lightStatus[Direction::east] == Color::yellow){
         lightStatus[Direction::west] = Color::red;
-        lightStatus[Direction::east] = Color::red; 
+        lightStatus[Direction::east] = Color::red;
         lightStatus[Direction::north] = Color::green;
-        lightStatus[Direction::south] = Color::green; 
+        lightStatus[Direction::south] = Color::green;
 
         } 
     }

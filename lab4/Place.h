@@ -7,6 +7,7 @@
 
 #ifndef Place_h
 #define Place_h
+#include "Enums.h"
 using namespace std;
 class Road;
 class Place {
@@ -55,6 +56,24 @@ public:
     Place* next() {
         return adjacent[0];
     }
+    
+    //need to make extra edge case ugh for middle four
+    Place* next(Direction direction) {
+        switch(direction) {
+            case north:
+                
+            case east:
+                
+                break;
+            case south:
+                
+                break;
+            case west:
+                
+                break;
+        }
+        return adjacent[0];
+    }
     char getIdentifier() {
         return identifier;
     }
@@ -69,6 +88,13 @@ public:
         return y;
     }
     
+    void reassignNeighbor(Place* adj, int index) {
+        if (index < 0 || index> 4) {
+            return;
+        }
+        adjacent[index] = adj;
+        
+    }
 private:
     int neighborsCount; // use to make sure we dont overassign adjecent places
     Place* adjacent[4];

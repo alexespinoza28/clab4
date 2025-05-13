@@ -19,7 +19,7 @@
 #include <unordered_map>
 #include <thread>
 #include <chrono>
-
+#include "Enums.h"
 using namespace std;
 
 const vector<string> Vehicle::colorMap = {
@@ -113,10 +113,10 @@ int main(int argc, const char * argv[]) {
     TrafficLight light = TrafficLight(3,1);
     Time timer = Time(2, &light);
     
-    northVq->spawnVehicle();
+    //northVq->spawnVehicle();
     eastVq->spawnVehicle();
     westVq->spawnVehicle();
-    southVq->spawnVehicle();
+    //southVq->spawnVehicle();
     printIntersectionCharMap(north,east,south,west);
     cout << " " << endl;
     //std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -131,8 +131,6 @@ int main(int argc, const char * argv[]) {
         cout<<"west color: "<<temp_func(light.getColor(Direction::west))<<endl;
         cout<<"east color: "<<temp_func(light.getColor(Direction::east))<<endl;
         
-        timer.tick();
-        
         northVq->moveVehicles(light.getColor(Direction::north));
         eastVq->moveVehicles(light.getColor(Direction::east));
         southVq->moveVehicles(light.getColor(Direction::south));
@@ -145,8 +143,11 @@ int main(int argc, const char * argv[]) {
         
         
         
-        printIntersectionCharMap(north,east,south,west);
+        printIntersectionCharMap(north,south, east, west);
         cout << " " << endl;
+        timer.tick();
+        
+       
         //std::this_thread::sleep_for(std::chrono::seconds(1));
         //psudo code,
         // each iteration call move vehicles and spawn

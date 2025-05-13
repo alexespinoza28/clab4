@@ -27,6 +27,7 @@
 #include <ctime>
 #include <deque>
 #include <unordered_map>
+#include "Enums.h"
 using namespace std;
 class VehicleQueue {
 private:

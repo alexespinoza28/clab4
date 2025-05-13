@@ -10,6 +10,7 @@
 #include <chrono>
 #include <thread>
 #include "TrafficLight.h"
+#include "Enums.h"
 using namespace std;
 
 
@@ -47,7 +48,7 @@ class Time {
             }
 
         }
-        this_thread::sleep_for(chrono::seconds(pause));
+        //this_thread::sleep_for(chrono::seconds(pause));
         duration += 1;
     }
 
